@@ -1,0 +1,305 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* --- NEW CRYPTO THEME TOKENS --- */
+  --bg-dark: #0b0e14;
+  --bg-panel: rgba(20, 24, 34, 0.65);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-highlight: rgba(255, 255, 255, 0.15);
+  
+  --accent-blue: #3b82f6;
+  --accent-purple: #8b5cf6;
+  
+  --font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+
+  /* --- MAPPED OLD VARIABLES (Upgraded for Dark Mode) --- */
+  --primary: #3b82f6;
+  --primary-hover: #60a5fa;
+  --bg-color: #0b0e14;
+  --card-bg: rgba(20, 24, 34, 0.65); /* Made it glassmorphic */
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --radius: 16px; 
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  
+  /* Ambient glowing background */
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* =========================================
+   NEW CRYPTO UTILITIES (From New Code)
+========================================= */
+
+.glass-panel {
+  background: var(--bg-panel);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.glass-panel:hover {
+  border-color: var(--border-highlight);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+}
+
+.glow-text {
+  background: linear-gradient(135deg, #60a5fa, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+/* Layout Utilities (New approach) */
+.app-layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* =========================================
+   UPGRADED OLD CLASSES (Match the New Vibe)
+========================================= */
+
+/* --- Layouts --- */
+.layout-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: var(--bg-panel);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-right: 1px solid var(--border-color);
+  padding: 1.5rem;
+}
+
+/* Works for both old and new layout styles */
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-title {
+  margin-bottom: 2rem;
+  color: var(--text-main);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* --- Grids --- */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; }
+
+/* --- Base Card & Button --- */
+.card {
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: var(--border-highlight);
+}
+
+.btn {
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.4);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px 0 rgba(139, 92, 246, 0.5);
+}
+
+/* --- Forms & Inputs --- */
+.form-layout { display: flex; flex-direction: column; gap: 1.2rem; }
+.input-group { display: flex; flex-direction: column; gap: 0.4rem; }
+
+.input-group label {
+  font-size: 0.85rem; 
+  font-weight: 600; 
+  color: var(--text-muted);
+  text-transform: uppercase; 
+  letter-spacing: 0.5px;
+}
+
+input, select {
+  padding: 0.8rem 1rem; 
+  border: 1px solid var(--border-color);
+  border-radius: 8px; 
+  font-size: 0.95rem; 
+  transition: all 0.2s;
+  background-color: rgba(0, 0, 0, 0.3); /* Dark slightly transparent input */
+  color: var(--text-main);
+}
+
+input:focus, select:focus {
+  outline: none; 
+  border-color: var(--primary); 
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+/* --- Old Stats Grid --- */
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+
+.stat-card {
+  background: var(--card-bg); 
+  padding: 1.5rem; 
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color); 
+  display: flex; 
+  align-items: center; 
+  gap: 1rem;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  border-color: var(--border-highlight);
+  transform: translateY(-2px);
+}
+
+.stat-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.stat-card h3 { font-size: 0.85rem; color: var(--text-muted); font-weight: 500;}
+.stat-card h2 { font-size: 1.8rem; color: var(--text-main); margin-top: 5px; }
+
+/* --- Tables --- */
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th {
+  text-align: left; 
+  padding: 1rem; 
+  border-bottom: 2px solid var(--border-color);
+  color: var(--text-muted); 
+  font-weight: 600; 
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.data-table td { 
+  padding: 1rem; 
+  border-bottom: 1px solid var(--border-color); 
+  vertical-align: middle; 
+}
+
+/* --- Status Badges (Neon Crypto Look) --- */
+.status-badge {
+  padding: 4px 10px; 
+  border-radius: 20px; 
+  font-size: 0.8rem;
+  font-weight: 600; 
+  border: 1px solid transparent; 
+  cursor: pointer;
+}
+.status-badge.Pending { 
+  background: rgba(245, 158, 11, 0.1); 
+  color: #fcd34d; 
+  border-color: rgba(245, 158, 11, 0.3);
+}
+.status-badge.Verified, .status-badge.Paid, .status-badge.Confirmed { 
+  background: rgba(16, 185, 129, 0.1); 
+  color: #6ee7b7; 
+  border-color: rgba(16, 185, 129, 0.3);
+}
+.status-badge.Allocated { 
+  background: rgba(59, 130, 246, 0.1); 
+  color: #93c5fd; 
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+/* --- Navigation Links --- */
+.nav-link {
+  display: flex; 
+  align-items: center; 
+  gap: 10px;
+  padding: 10px 15px; 
+  border-radius: 8px;
+  text-decoration: none; 
+  font-weight: 500;
+  background-color: transparent; 
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover { 
+  background-color: rgba(255, 255, 255, 0.05); 
+  color: var(--text-main); 
+}
+
+.nav-link.active { 
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.2), transparent);
+  color: var(--text-main); 
+  border-left: 3px solid var(--accent-blue);
+  border-radius: 0 8px 8px 0;
+}
+
+/* --- Progress Bar --- */
+.progress-bar {
+  height: 8px; 
+  background: rgba(255, 255, 255, 0.05); 
+  border-radius: 4px; 
+  overflow: hidden; 
+  width: 100px;
+  border: 1px solid var(--border-color);
+}
+
+.progress-fill {
+  height: 100%; 
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); 
+  border-radius: 4px; 
+  transition: width 0.3s ease;
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+}
+
+/* =========================================
+   Custom Webkit Scrollbar
+========================================= */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
